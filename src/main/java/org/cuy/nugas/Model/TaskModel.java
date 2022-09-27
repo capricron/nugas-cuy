@@ -27,6 +27,12 @@ public class TaskModel {
     public Date date;
     public String time;
 
+    public Boolean done;
+
+    public TaskModel() {
+        this.done = false;
+    }
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public UserModel user;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -25,7 +26,7 @@ public class GroupTaskModel {
     @Column(name = "group_name")
     public String groupName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "group_tasks_users", joinColumns = @JoinColumn(name = "group_task_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     public List<UserModel> userList;
 

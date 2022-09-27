@@ -1,0 +1,60 @@
+==Nugas Cuy==
+Nugas cuy adalah sebuah aplikasi yang akan mencatat tugas yang akan anda kerjakan
+Tidak cuman pada nugas cuy ada dapat membuat sebuah grup yang di dalam nya ada beberapa teman" kalian
+Pada grup tersebut anda dapat membuat sebuah tugas untuk teman" kalian
+
+==Entities==
++ User
+    - username {string}
+    - email {string}
+    - password {string}
++ Task
+    - name {string}
+    - note {string}
+    - date {date}
+    - time {string}
+    - done {boolean}
++ Group
+    - groupName {string}
+
+==Relasi==
++ One to Many || User - Task
++ Many to Many || Group - User
+
+==Endpoint==
+/register
++ =post= menambahkan akun / user [username,email,password]
+
+/user
++ =get= mendapatkan semua data user
++ =get= {id} mendapatkan data user berdasarkan id
++ =put= {id} mengedit data user berdasarkan id [username,email,password]
++ =delete= {id} menghapus data berdasarkan id
+
+/group
++ =get= mendapatkan semua data group
++ =get= {id} mendapatkan data group berdasarkan id
++ =post= menambahkan group [groupName]
++ =put= {id} mengedit nama group [groupName]
++ =delete= {id} menghapus group
+
+/task
++ =get= mendapatkan semua data tugas
++ =get= {id} mendapatkan tugas berdasarkan id
++ =post= {userId} menambahkan tugas dengan disertai user id [name,note,date,time]
++ =put= {id} mengedit tugas berdasarkan id
++ =put= {id}/done mengedit tugas telah selesai [done]
++ =delete= {id} menghapus tugas berdasarkan id
+
+==Contoh Response==
+{
+    status : true/false
+    message : Success Get User Data
+    data : {
+        "id" : "1",
+        "username" : "username",
+        "email" : "username@example.com",
+        "password" : "$2a$12$4XfIMBKt3/Mv5aE0r0Uu5.XCcN4M.yAfrDYynQs6v7zHJB12W9mFu"
+    }
+}
+

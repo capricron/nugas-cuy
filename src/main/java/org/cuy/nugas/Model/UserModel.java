@@ -2,16 +2,15 @@ package org.cuy.nugas.Model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "users")
@@ -26,10 +25,11 @@ public class UserModel {
     public String email;
     public String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.REMOVE)
     public List<TaskModel> taskList;
 
-    @ManyToMany
-    @JoinTable(name = "group_tasks_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_task_id"))
-    public List<GroupTaskModel> groupTaskList;
+    // @ManyToMany(fetch = FetchType.EAGER)
+    // @JoinTable(name = "group_tasks_users", joinColumns = @JoinColumn(name =
+    // "user_id"), inverseJoinColumns = @JoinColumn(name = "group_task_id"))
+    // public List<GroupTaskModel> groupTaskList;
 }
